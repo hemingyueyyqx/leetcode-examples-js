@@ -1,0 +1,53 @@
+//这段代码借助 Proxy 对对象 view 的 selected 属性赋值进行拦截，在赋值时自动更新对应 DOM 元素的 aria - selected 属性，以模拟选项选中状态的切换。
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy Example</title>
+</head>
+
+<body>
+    <!-- 创建两个列表项元素，每个元素都有唯一的 id -->
+    <ul>
+        <li id="item-1">Item 1</li>
+        <li id="item-2">Item 2</li>
+    </ul>
+    <script>
+        let view = new Proxy(
+            {
+                selected: null,
+            },
+            {
+                set: function (obj, prop, newval) {
+                    let oldval = obj[prop];
+
+                    if (prop === "selected") {
+                        if (oldval) {
+                            oldval.setAttribute("aria-selected", "false");
+                        }
+                        if (newval) {
+                            newval.setAttribute("aria-selected", "true");
+                        }
+                    }
+
+                    // 默认行为是存储被传入 setter 函数的属性值
+                    obj[prop] = newval;
+
+                    // 表示操作成功
+                    return true;
+                },
+            }
+        );
+
+        let i1 = (view.selected = document.getElementById("item-1"));
+        console.log(i1.getAttribute("aria-selected")); // 'true'
+
+        let i2 = (view.selected = document.getElementById("item-2"));
+        console.log(i1.getAttribute("aria-selected")); // 'false'
+        console.log(i2.getAttribute("aria-selected")); // 'true'
+    </script>
+</body>
+
+</html>    
