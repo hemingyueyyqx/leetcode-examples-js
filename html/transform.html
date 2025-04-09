@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform</title>
+</head>
+
+<body>
+    <div class="tran1">
+
+    </div>
+    <p>12345</p>
+    <div class="translate">
+        <p>123456</p>
+    </div>
+    <style>
+        div.tran1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            /* transition: width 2s, height 4s; */
+            transition-property: width, height;
+            transition-duration: 2s, 4s;
+        }
+
+        div.tran1:hover {
+            width: 300px;
+            height: 300px;
+        }
+
+        div.translate {
+            width: 300px;
+            height: 100px;
+            border: 1px solid black;
+            background-color: yellow;
+            transition: transform 1s;
+        }
+
+        div.translate:hover {
+            transform: translate(50px, 100px);
+        }
+    </style>
+</body>
+
+</html>

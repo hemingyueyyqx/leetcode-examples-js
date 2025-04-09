@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水平垂直居中</title>
+</head>
+
+<body>
+    <h1>水平垂直居中</h1>
+    <div class="container1">
+        Flexbox 布局
+    </div>
+    <div class="container2">
+        Grid 布局
+    </div>
+    <div class="parent">
+        <div class="child">
+            绝对定位 + transform
+        </div>
+    </div>
+    <div class="container3">
+        <div class="inner">
+            table 布局
+        </div>
+
+    </div>
+    <div class="container4">
+        line-height 方法（仅限单行文本）
+    </div>
+    <div class="parent1">
+        <div class="child1">
+            margin: auto 方法（需已知尺寸）
+        </div>
+    </div>
+    <style>
+        .container1 {
+            margin-bottom: 10px;
+            border: 1px solid red;
+            display: flex;
+            align-items: center;
+            /* 垂直居中 */
+            justify-content: center;
+            /* 水平居中 */
+            height: 100px;
+            /* 需要设置高度 */
+        }
+
+        .container2 {
+            margin-bottom: 10px;
+            border: 1px solid blue;
+            display: grid;
+            place-items: center;
+            /* 同时垂直和水平居中 */
+            height: 100px;
+        }
+
+        .parent {
+            margin-bottom: 10px;
+            border: 1px solid green;
+            position: relative;
+            height: 100px;
+        }
+
+        .child {
+            border: 1px solid red;
+            position: absolute;
+            top: 50%;
+            /* 父容器高度的50%位置 */
+            left: 50%;
+            /* 父容器宽度的50%位置 */
+            /* 添加水平定位 */
+            transform: translate(-50%, -50%);
+            /* X轴左移50%自身宽度，Y轴上移50%自身高度 */
+            /* 同时调整XY方向 */
+        }
+
+        .container3 {
+            margin-bottom: 10px;
+            border: 1px solid red;
+            display: table;
+            width: 100%;
+            height: 100px;
+        }
+
+        .inner {
+            border: 1px solid blue;
+            display: table-cell;
+            vertical-align: middle;
+            /* 垂直居中 */
+            text-align: center;
+            /* 水平居中 */
+        }
+
+        .container4 {
+            margin-bottom: 10px;
+            border: 1px solid green;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            /* 等于容器高度 */
+        }
+
+        .parent1 {
+            position: relative;
+            /* 创建定位上下文 */
+            height: 100px;
+            background: #f0f0f0;
+        }
+
+        .child1 {
+            position: absolute;
+            /* 关键1：四个方向贴边 */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            /* 关键2：自动外边距 */
+            margin: auto;
+
+            /* 关键3：必须设置尺寸 */
+            width: 200px;
+            height: 50px;
+
+            background: #333;
+            color: white;
+        }
+    </style>
+</body>
+
+</html>
