@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三栏布局</title>
+</head>
+
+<body>
+    <header class="head">head</header>
+    <div class="container">
+        <aside class="left">左侧边栏</aside>
+        <main class="center">主内容区</main>
+        <aside class="right">右侧边栏</aside>
+    </div>
+    <style>
+        /* .container {
+            display: flex;
+            min-height: 100vh;
+        } */
+        /* 1fr 的核心含义
+fr = 剩余空间的分配比例
+
+先扣除所有固定尺寸（如 200px），再将剩余空间按 fr 的比例分配。
+
+这里的 1fr 表示：「占据剩余的全部可用空间」。
+
+实际效果
+
+左栏和右栏固定为 200px 宽度。
+
+中间主栏会自动拉伸，填满容器剩余的所有宽度。 */
+
+
+        .container {
+            display: grid;
+            grid-template-columns: 200px 1fr 200px;
+            /* 三列布局 */
+            min-height: 100vh;
+        }
+
+        .left,
+        .right {
+            width: 200px;
+            /* 固定宽度 */
+            background: #f5f5f5;
+        }
+
+        .center {
+            flex: 1;
+            /* 关键属性：自动填充剩余空间 */
+            background: #fff;
+        }
+
+        .head {
+            border: 1px solid green;
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伪元素实战示例</title>
+    <style>
+        /* 1. ::before/::after 基础用法 */
+        .icon-box::before {
+            content: "🔔";
+            margin-right: 8px;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+        }
+
+        .tooltip::after {
+            content: "这是提示文字！";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            /* left: 0; */
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+            /*强制文本不换行*/
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+
+        /* 2. ::first-letter 首字母下沉 */
+        .dropcap::first-letter {
+            font-size: 3em;
+            float: left;
+            line-height: 0.8;
+            margin-right: 4px;
+            color: #e74c3c;
+        }
+
+        /* 3. ::first-line 首行样式 */
+        .first-line-demo::first-line {
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        /* 4. ::selection 文本选中样式 */
+        .custom-selection::selection {
+            background: #2ecc71;
+            color: white;
+        }
+
+        /* 5. 清除浮动（实用技巧） */
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+
+        }
+
+        .float-left {
+            float: left;
+            width: 100px;
+            height: 300px;
+            background: #f1c40f;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1. ::before 添加图标 -->
+    <div class="icon-box">系统通知</div>
+
+    <!-- 2. ::after 实现工具提示 -->
+    <div class="tooltip" style="margin: 20px 0;">鼠标悬停查看提示</div>
+
+    <!-- 3. ::first-letter 首字母特效 -->
+    <p class="dropcap" style="width: 300px;">
+        这是一个使用首字母下沉效果的段落。伪元素可以轻松实现印刷风格的排版效果。
+    </p>
+
+    <!-- 4. ::first-line 首行样式 -->
+    <p class="first-line-demo" style="width: 400px;">
+        这段文字的第一行会被特殊样式修饰。无论浏览器窗口如何调整，始终只有第一行保持蓝色加粗效果。后续内容保持默认样式。
+    </p>
+
+    <!-- 5. ::selection 自定义选中样式 -->
+    <p class="custom-selection">
+        尝试用鼠标选中这段文字，可以看到自定义的选中效果（绿色背景+白色文字）
+    </p>
+
+    <!-- 6. ::after 清除浮动 -->
+    <div class="clearfix" style="border: 2px solid #7f8c8d; margin-top: 20px;">
+        <div class="float-left"></div>
+        <p>浮动元素会导致父容器高度塌陷，使用::after伪元素可以清除浮动。</p>
+    </div>
+</body>
+
+</html>

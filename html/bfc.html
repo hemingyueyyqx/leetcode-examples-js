@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bfc</title>
+</head>
+
+<body>
+    <div class="box1">Box 1</div>
+    <div class="bfc-container">
+        <div class="box2">Box 2</div>
+    </div>
+    <div class="parent">
+        <div class="float-child">浮动元素</div>
+    </div>
+    <style>
+        .box1,
+        .box2 {
+            margin: 20px;
+            background: lightblue;
+        }
+
+        .bfc-container {
+            border: 1px solid red;
+            /* overflow: hidden; */
+            /* 触发 BFC，阻止外边距折叠 ,Box2 的 margin 不再和 Box1 合并*/
+        }
+
+        .parent {
+            margin: 20px;
+            height: 100px;
+            border: 1px solid blue;
+            overflow: hidden;
+        }
+
+        /* 触发 BFC，父元素能包住浮动子元素 */
+        .float-child {
+            height: 300px;
+            border: 1px solid red;
+            float: left;
+        }
+    </style>
+</body>
+
+</html>

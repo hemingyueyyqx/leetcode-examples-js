@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 优先级实战演示</title>
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .demo-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        /* ==================== */
+        /* 1. 类选择器 vs ID 选择器 */
+        #priority-title {
+            color: blue;
+        }
+
+        .priority-title {
+            color: red;
+        }
+
+        /* ==================== */
+        /* 2. 复杂选择器权重比较 */
+        div#main .content a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #sidebar .link {
+            color: #27ae60;
+            text-decoration: underline;
+        }
+
+        /* ==================== */
+        /* 3. !important 的威力 */
+        p.important-demo {
+            color: green !important;
+        }
+
+        #important-text {
+            color: purple;
+        }
+
+        /* ==================== */
+        /* 4. 继承样式优先级 */
+        .inheritance-demo {
+            color: red;
+        }
+
+        .inheritance-demo p {
+            /* color: initial; */
+            /* 重置继承 */
+        }
+
+        /* ==================== */
+        /* 5. 伪类顺序影响 */
+        a.pseudo-class:link {
+            color: blue;
+        }
+
+        a.pseudo-class:visited {
+            color: purple;
+        }
+
+        a.pseudo-class:hover {
+            color: red;
+        }
+
+        a.pseudo-class:visited:hover {
+            color: #ff00ff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS 优先级实战演示</h1>
+
+    <!-- 1. 类选择器 vs ID 选择器 -->
+    <div class="demo-box">
+        <h2>场景1：类选择器 vs ID 选择器</h2>
+        <p>ID选择器权重(0-1-0-0) > 类选择器权重(0-0-1-0)</p>
+        <h3 id="priority-title" class="priority-title">这个标题是什么颜色？</h3>
+        <p><strong>结果：</strong>蓝色（ID选择器优先级更高）</p>
+    </div>
+
+    <!-- 2. 复杂选择器权重比较 -->
+    <div class="demo-box">
+        <h2>场景2：复杂选择器权重比较</h2>
+        <p>比较 div#main .content a (0-1-1-2) 和 #sidebar .link (0-1-1-0)</p>
+        <div id="main">
+            <div class="content">
+                <a href="#">链接1（红粗无下划线）</a>
+            </div>
+        </div>
+        <div id="sidebar">
+            <a class="link" href="#">链接2（绿有下划线）</a>
+        </div>
+        <p><strong>结果：</strong>链接1样式生效（D列2>0）</p>
+    </div>
+
+    <!-- 3. !important 的威力 -->
+    <div class="demo-box">
+        <h2>场景3：!important 的威力</h2>
+        <p class="important-demo" id="important-text">这个段落是什么颜色？</p>
+        <p><strong>结果：</strong>绿色（!important覆盖了ID选择器）</p>
+        <p style="color: orange;">注：!important甚至能覆盖行内样式</p>
+    </div>
+
+    <!-- 4. 继承样式优先级 -->
+    <div class="demo-box inheritance-demo">
+        <h2>场景4：继承样式的优先级</h2>
+        <p>这个div设置了color: red，下面的段落会继承：</p>
+        <p>继承的文字（红色）</p>
+        <p style="color: blue;">直接设置样式的文字（蓝色）</p>
+        <p><strong>结果：</strong>直接设置的样式 > 继承样式</p>
+    </div>
+
+    <!-- 5. 伪类顺序影响 -->
+    <div class="demo-box">
+        <h2>场景5：伪类顺序影响</h2>
+        <p>注意：需要实际点击链接后才能看到visited效果</p>
+        <a href="https://example.com" class="pseudo-class" target="_blank">测试链接</a>
+        <p><strong>交互效果：</strong></p>
+        <ul>
+            <li>默认：蓝色</li>
+            <li>访问后：紫色</li>
+            <li>悬停：红色</li>
+            <li>访问后悬停：粉紫色</li>
+        </ul>
+        <p>说明：更具体的伪类组合选择器优先级更高</p>
+    </div>
+
+    <!-- 优先级总结 -->
+    <div class="demo-box" style="background: #e8f4f8;">
+        <h2>CSS优先级速查表</h2>
+        <table border="1" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+            <tr style="background: #3498db; color: white;">
+                <th>选择器类型</th>
+                <th>示例</th>
+                <th>权重值 (A-B-C-D)</th>
+            </tr>
+            <tr>
+                <td>行内样式</td>
+                <td><code>style="color:red"</code></td>
+                <td>1-0-0-0</td>
+            </tr>
+            <tr>
+                <td>ID选择器</td>
+                <td><code>#header</code></td>
+                <td>0-1-0-0</td>
+            </tr>
+            <tr>
+                <td>类/伪类/属性选择器</td>
+                <td><code>.btn</code>, <code>:hover</code></td>
+                <td>0-0-1-0</td>
+            </tr>
+            <tr>
+                <td>元素/伪元素选择器</td>
+                <td><code>div</code>, <code>::before</code></td>
+                <td>0-0-0-1</td>
+            </tr>
+            <tr>
+                <td>通配符/继承样式</td>
+                <td><code>*</code>, 继承的样式</td>
+                <td>0-0-0-0</td>
+            </tr>
+        </table>
+        <p style="margin-top: 15px;">
+            <strong>记忆口诀：</strong><br>
+            <em>行内样式 > ID > 类/伪类 > 元素 > 通配符</em><br>
+            权重相同时，后定义的样式生效
+        </p>
+    </div>
+</body>
+
+</html>

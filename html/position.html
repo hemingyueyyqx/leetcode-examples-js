@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position</title>
+</head>
+
+<body>
+    <div class="header">普通头部</div>
+    <div class="sticky-header">我是 sticky 导航，滚动时会粘在顶部</div>
+    <div class="content">很多内容...</div>
+    <div class="parent">
+        <div class="box static">static</div>
+        <div class="box relative">relative</div>
+        <div class="box absolute">absolute</div>
+        <div class="box fixed">fixed</div>
+        <div class="box sticky">sticky</div>
+    </div>
+
+    <style>
+        .parent {
+            position: relative;
+            height: 2000px;
+            border: 1px solid #ccc;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+
+        .static {
+            position: static;
+            background: lightblue;
+        }
+
+        .relative {
+            position: relative;
+            top: 20px;
+            left: 30px;
+            background: lightgreen;
+        }
+
+        .absolute {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            background: coral;
+        }
+
+        .fixed {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: gold;
+        }
+
+        .sticky {
+            position: sticky;
+            top: 0;
+            background: violet;
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            /* 关键！当滚动到距离顶部 0px 时，固定住 */
+            background: gold;
+            padding: 10px;
+        }
+    </style>
+</body>
+
+</html>

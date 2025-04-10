@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无限旋转动画</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        /* @keyframes spin：定义了一个名为spin的动画。从0%到100%，元素的transform属性从rotate(0deg)（不旋转）过渡到rotate(360deg)（旋转一圈）。 */
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+/* linear-gradient：这是 CSS 中的一个函数，它的作用是创建线性渐变背景。线性渐变指的是从一种颜色平滑过渡到另一种颜色或者多种颜色的背景效果。
+45deg：该参数代表渐变的方向，单位为度（deg）。45deg 意味着渐变方向是从左下角到右上角。你可以通过调整角度值来改变渐变方向，例如 0deg 表示从下到上，90deg 表示从左到右。
+#3498db 和 #e74c3c：这两个是十六进制颜色值。#3498db 通常是蓝色系，#e74c3c 通常是红色系。它们分别为渐变的起始颜色和结束颜色。也就是说，背景颜色会从 #3498db 逐渐过渡到 #e74c3c。 */
+/* spin：这是动画的名称，它需要和之前通过 @keyframes 规则定义的动画名称保持一致。在之前的代码里，@keyframes spin 定义了一个旋转动画，所以这里使用 spin 来引用这个动画。
+3s：表示动画的持续时间，单位是秒（s）。这里 3s 意味着动画完成一次完整的循环需要 3 秒。
+linear：是动画的时间函数，它规定了动画在执行过程中的速度变化情况。linear 表示动画以匀速进行，也就是从开始到结束速度始终保持不变。除了 linear，还有其他常见的时间函数，比如 ease（开始和结束较慢，中间较快）、ease-in（开始较慢）、ease-out（结束较慢）等。
+infinite：表示动画的播放次数，infinite 意味着动画会无限循环播放，直到页面被关闭或者动画被停止。 */
+        .rotating-element {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            animation: spin 3s linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rotating-element"></div>
+</body>
+
+</html>
