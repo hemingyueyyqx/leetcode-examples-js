@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>两秒内只能输出一次</button>
+    <script>
+        //防抖 避免函数的重复调用 只会调用一次
+        function antishake(fn, wait) { //第一个参数是函数 第二个参数是毫秒值
+            let timer = null //声明一个变量来接收延时器 初始值为null
+            return function () {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn() //调用这函数
+                }, wait);
+            }
+        }
+        let an = antishake(function () { //用一个变量接收
+            console.log('555');
+        }, 2000)
+        document.querySelector('button').onclick = () => {
+            an() //调用一次
+        } 
+    </script>
+</body>
+
+</html>
