@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .multi-line-js {
+            width: 300px;
+            border: 1px solid #ccc;
+            line-height: 20px;
+            max-height: 60px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="multi-line-js" id="multiLineText">
+        这是一段很长的文本内容，用于测试多行溢出省略号的效果。这是一段很长的文本内容，用于测试多行溢出省略号的效果。这是一段很长的文本内容，用于测试多行溢出省略号的效果。
+    </div>
+    <script>
+        const multiLineText = document.getElementById('multiLineText');
+        const lineHeight = parseInt(getComputedStyle(multiLineText).lineHeight);
+        const maxLines = 3;
+        const maxHeight = lineHeight * maxLines;
+        // 进入 if 语句块，开始 while 循环。
+            // 第一次循环：去掉最后一个字符，文本变为 "这是一段很长的文本，需要进行处理以适应最大高度限制" 并加上省略号，此时再检查元素高度，若仍超出 60px，则继续循环。
+            // 持续循环，不断削减文本，直到元素高度不超过 60px，循环结束。
+        if (multiLineText.offsetHeight > maxHeight) {
+            let text = multiLineText.textContent;
+            while (multiLineText.offsetHeight > maxHeight) {
+                text = text.slice(0, -1);
+                multiLineText.textContent = text + '...';
+            }
+        }
+    </script>
+</body>
+
+</html>

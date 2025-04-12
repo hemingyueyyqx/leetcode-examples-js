@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* display: -webkit-box;
+含义：该属性值将元素设置为一个弹性伸缩盒容器，这是旧版的弹性布局模型。在传统的盒模型布局中，元素的排列方式较为固定，而使用 -webkit-box 可以让元素内部的子元素按照一定规则进行排列。
+作用：当你把元素的 display 属性设置为 -webkit-box 时，意味着你打算使用 WebKit 特有的伸缩盒布局方式来排列其子元素。在多行文本溢出处理的场景下，它为后续的文本排列和截断提供了基础布局模式。
+-webkit-box-orient: vertical;
+含义：此属性用于定义伸缩盒容器内子元素的排列方向。vertical 表示子元素会按照垂直方向进行排列，也就是从上到下依次排列。
+作用：在多行文本溢出处理中，设置为 vertical 后，文本会按照垂直方向逐行显示。这样后续的 -webkit-line-clamp 属性才能根据行数进行截断操作。如果不设置该属性或者设置为其他值（如 horizontal 表示水平排列），就无法实现按行截断文本的效果。
+-webkit-line-clamp: 3;
+含义：这个属性用来限制在一个块元素中显示的文本行数。3 表示最多显示 3 行文本，超出 3 行的部分将被隐藏。
+作用：结合前面的 display: -webkit-box 和 -webkit-box-orient: vertical，当文本内容超过 3 行时，超出的部分会被隐藏，并在末尾显示省略号（前提是还设置了 overflow: hidden）。这是实现多行文本溢出显示省略号效果的关键属性。 */
+        .multi-line-ellipsis {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            width: 300px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="multi-line-ellipsis">
+        这是一段很长的文本内容，用于测试多行溢出省略号的效果。这是一段很长的文本内容，用于测试多行溢出省略号的效果。这是一段很长的文本内容，用于测试多行溢出省略号的效果。
+    </div>
+</body>
+
+</html>
