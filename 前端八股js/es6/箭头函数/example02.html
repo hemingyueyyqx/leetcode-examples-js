@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点击输出</button>
+    <script>
+        // 数组方法
+        const numbers = [1, 2, 3];
+        const doubled = numbers.map(n => n * 2);
+        const button = document.querySelector('button');
+        // 事件处理
+        //回调函数
+        button.addEventListener('click', () => {
+            console.log('Button clicked');
+        });
+        // 需要保持this上下文的场景
+        class Counter {
+                constructor() {
+                    this.count = 0;
+                    // 使用箭头函数保持this指向
+                    this.increment = () => {
+                        this.count++;
+                    };
+                }
+            }
+
+
+    </script>
+</body>
+
+</html>
