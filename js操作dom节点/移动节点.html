@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Items Between Lists</title>
+    <style>
+        .list-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .list {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-width: 200px;
+        }
+
+        .list-item {
+            cursor: pointer;
+            padding: 5px;
+            margin: 5px 0;
+            background-color: #f0f0f0;
+        }
+
+        .list-item:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="list-container">
+        <div class="list listL">
+            <div class="list-item">Item 1</div>
+            <div class="list-item">Item 2</div>
+            <div class="list-item">Item 3</div>
+        </div>
+        <div class="list listR">
+            <!-- 右侧列表初始为空 -->
+        </div>
+        <button onclick="moveToR()">点击将左列表最后一个元素加入右列表</button>
+    </div>
+    <script>
+        // 获取左侧列表元素
+        const _listL = document.querySelector('.listL');
+        // 获取左侧列表的子节点集合
+        const child = _listL.childNodes;
+        // 遍历子节点集合
+        for (let i = 0; i < child.length; i++) {
+            // 判断节点类型是否为元素节点
+            if (child[i].nodeType === 1) {
+                // 为元素节点添加点击事件监听器
+                child[i].onclick = function () {
+                    // 获取右侧列表元素
+                    const listR = document.querySelector('.listR');
+                    // 将当前点击的元素添加到右侧列表
+                    listR.appendChild(this);
+                };
+            }
+        }
+        function moveToR() {
+            const listL = document.querySelector(".listL");
+            const listR = document.querySelector(".listR");
+            const lastChild = listL.lastElementChild;
+            if (lastChild) {
+                listR.appendChild(lastChild);
+            }
+        }
+    </script>
+</body>
+
+</html>
