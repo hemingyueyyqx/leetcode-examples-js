@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取元素距离顶部和左部的距离</title>
+    <style>
+        #parent {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+        }
+
+        #child {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parent">
+        <div id="child"></div>
+    </div>
+    <script>
+        const child = document.getElementById('child');
+        const offsetTop = child.offsetTop;
+        const offsetLeft = child.offsetLeft;
+        console.log('元素距离父元素顶部的距离:', offsetTop);
+        console.log('元素距离父元素左部的距离:', offsetLeft);
+        const element = document.getElementById('parent');
+        const rect = element.getBoundingClientRect();
+        const viewportTop = rect.top;
+        const viewportLeft = rect.left;
+        console.log('元素相对于视口顶部的距离:', viewportTop);
+        console.log('元素相对于视口左部的距离:', viewportLeft);
+    </script>
+</body>
+
+</html>

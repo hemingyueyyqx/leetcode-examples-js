@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input事件</title>
+</head>
+
+<body>
+    <input type="text" id="myInput" placeholder="请输入内容">
+    <script>
+        input = document.getElementById('myInput');
+        input.addEventListener('focus', () => {
+            input.style.backgroundColor = 'yellow'
+        })
+        input.addEventListener('blur', () => {
+            input.style.backgroundColor = 'red'
+        })
+        input.addEventListener('input', () => {
+            console.log(input.value);
+
+        })
+        input.addEventListener('change', () => {
+            console.log(input.value);
+        })
+    </script>
+</body>
+
+</html>

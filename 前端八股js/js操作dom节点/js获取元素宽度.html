@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取元素宽度</title>
+    <style>
+        #myElement {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid black;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myElement">这是一个示例元素</div>
+    <script>
+        const element = document.getElementById('myElement');
+        const width = element.offsetWidth;
+        const clientWidth = element.clientWidth;
+        console.log('元素的布局宽度:', width);
+        console.log('元素的内部宽度:', clientWidth);
+        const rect = element.getBoundingClientRect();
+        const width1 = rect.width;
+        console.log('元素的宽度:', width1);
+        
+
+    </script>
+</body>
+
+</html>
