@@ -7,6 +7,7 @@ var person = {
     console.log(this.name);
   }
 };
+person.sayName();
 
 function sayName() {
   var sss = person.sayName;
