@@ -1,8 +1,3 @@
-var name = "window";
-var person = {
-  name: "person",
-  sayName: function () {
-    console.log(this.name);
-  }
-};
-sayName();
+2)
+console.log(typeof NaN);
+

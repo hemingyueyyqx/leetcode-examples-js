@@ -11,9 +11,9 @@
     <div class="box">Click me</div>
     <script>
         // boxDiv.onclick 方式
-// 在使用 boxDiv.onclick 这种传统的事件绑定方式时，回调函数中的 this 指向的是绑定该事件的 DOM 元素，也就是 boxDiv。当用户点击这个 div 元素时，this 就代表这个 div 元素本身，所以 console.log(this) 会打印出该 div 元素的 DOM 对象。
-            // boxDiv.addEventListener 方式
-// 当使用 addEventListener 方法来绑定事件时，如果传入的回调函数是普通函数（非箭头函数），那么在这个回调函数内部，this 同样指向绑定该事件的 DOM 元素，也就是 boxDiv。因此，当点击该 div 元素触发这个回调函数时，console.log(this) 也会打印出该 div 元素的 DOM 对象。如果是箭头函数，则this指向全局。
+        // 在使用 boxDiv.onclick 这种传统的事件绑定方式时，回调函数中的 this 指向的是绑定该事件的 DOM 元素，也就是 boxDiv。当用户点击这个 div 元素时，this 就代表这个 div 元素本身，所以 console.log(this) 会打印出该 div 元素的 DOM 对象。
+        // boxDiv.addEventListener 方式
+        // 当使用 addEventListener 方法来绑定事件时，如果传入的回调函数是普通函数（非箭头函数），那么在这个回调函数内部，this 同样指向绑定该事件的 DOM 元素，也就是 boxDiv。因此，当点击该 div 元素触发这个回调函数时，console.log(this) 也会打印出该 div 元素的 DOM 对象。如果是箭头函数，则this指向全局。
         const boxDiv = document.querySelector('.box');
         boxDiv.onclick = function () {
             console.log('onclick this:', this);
@@ -21,6 +21,7 @@
         boxDiv.addEventListener('click', function () {
             console.log('addEventListener this:', this);
         });
+        // console.log("cookie", document.cookie);
     </script>
 </body>
 
