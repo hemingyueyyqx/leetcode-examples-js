@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>防抖</title>
+    <title>防抖1</title>
 </head>
 
 <body>
@@ -13,16 +13,20 @@
         function fangdou(fn, wait) {
             let timer = null;
             return function () {
-                // console.log('防抖函数内 this 指向:', this);
+                // 在fangdou函数返回的匿名函数里，console.log('防抖函数内 this 指向1:', this);中的this指向的是触发事件的元素，也就是<button>元素。这是由于该匿名函数是作为事件处理函数被调用的，在浏览器环境中，事件处理函数里的this默认指向触发事件的元素。
+                console.log('防抖函数内 this 指向1:', this);
+                const context = this;
+                const args = arguments;
                 clearTimeout(timer);
-                timer = setTimeout(function () {
-                    fn();
+                // 在setTimeout的回调函数fn()里，console.log('防抖函数内 this 指向2:', this);中的this指向的是全局对象（在浏览器环境中是window对象）。这是因为setTimeout的回调函数是作为普通函数调用的，在非严格模式下，普通函数内部的this指向全局对象。
+                timer = setTimeout(() => {
+                    fn.apply(context, args);
                 }, wait)
             }
         }
         const button = document.querySelector('button');
         const fn1 = fangdou(function () {
-            console.log('防抖函数内 this 指向:', this);
+            console.log('防抖函数内 this 指向2:', this);
             console.log("防抖");
 
         }, 2000)

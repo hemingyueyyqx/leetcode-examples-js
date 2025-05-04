@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>防抖</title>
+    <title>防抖2</title>
 </head>
 
 <body>
@@ -13,6 +13,7 @@
         function fangdou(fn, wait) {
             let timer = null;
             return function () {
+                // console.log('防抖函数内 this 指向1:', this);
                 const context = this;
                 const args = arguments;
                 clearTimeout(timer);
@@ -23,7 +24,7 @@
         }
         const button = document.querySelector('button');
         const fn1 = fangdou(function () {
-            console.log('防抖函数内 this 指向:', this);
+            // console.log('防抖函数内 this 指向2:', this);
             console.log("防抖");
         }, 2000);
         button.onclick = fn1;

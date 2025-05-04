@@ -11,23 +11,28 @@
     <button>点击上车</button>
     <script>
         function throttle(fn, wait) {
+
             let timer = null //节点闸
             return function () {
+                const content = this;
+                const args = arguments;
+                // console.log("this指向1:", this);
+
                 //如果 timer 不为 null，说明在 wait 时间间隔内已经有定时器在运行，目标函数已经在等待执行，此时直接返回，不执行后续代码。
                 if (timer) return //null false 不是null结果减少true 如果上传没有我就直接跳过 没有人我就上去
                 //如果 timer 为 null，说明当前没有正在运行的定时器，可以执行目标函数。设置一个定时器，在 wait 毫秒后执行目标函数 fn，并在执行完成后将 timer 重置为 null，表示定时器已结束，可以再次触发目标函数。
                 timer = setTimeout(() => { //上车了
-                    fn()
+                    fn.apply(content, args)
                     timer = null //做完之后重新关闭节点闸
                 }, wait);
             }
         }
-        let throttle1 = throttle(() => {
+        let throttle1 = throttle(function () {
+            // console.log("this指向2:", this);
             console.log('我上车了');
         }, 2000)
-        document.querySelector('button').onclick = () => {
-            throttle1()
-        }
+        document.querySelector('button').onclick =
+            throttle1
 
     </script>
 </body>
