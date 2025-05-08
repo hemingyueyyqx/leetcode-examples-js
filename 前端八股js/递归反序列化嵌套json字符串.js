@@ -38,5 +38,5 @@ const obj = JSON.parse(resp1);
  parseObject(obj);
 
 // console.log('obj:', obj);
-// console.log(obj);
-console.log();
+console.log(obj);
+// console.log();
